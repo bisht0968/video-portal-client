@@ -20,7 +20,8 @@ const SingleVideo = () => {
     console.log(singleVideo);
     return (
         <div>
-            Single Video
+
+            Single Video:single
         </div>
     )
 }
