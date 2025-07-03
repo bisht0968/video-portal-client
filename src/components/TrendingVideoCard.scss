@@ -1,0 +1,22 @@
+.trendingVideoCardContainer {
+    width: 1094px;
+    height: 500px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+
+    .trendingVideoCardSection {
+        .trendingVideoCardImage {
+
+            img {
+                width: 100%;
+                max-height: 500px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

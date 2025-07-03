@@ -1,0 +1,23 @@
+.photoCardContainer {
+    width: 350px;
+
+    .photoCardSection {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        border-radius: 10px;
+
+        .photoCardImage {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+    }
+}

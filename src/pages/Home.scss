@@ -1,0 +1,134 @@
+.homeContainer {
+    margin-block: 50px;
+    margin-block-end: 0;
+
+    .homeSection {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+        .heroSection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+
+            .homeSectionDescription {
+                h1 {
+                    font-size: 50px;
+                }
+
+                button {
+                    background-color: black;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    font-size: 20px;
+                    padding: 10px 20px;
+                    border: 1px solid black;
+                    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+                }
+
+                button:hover {
+                    cursor: pointer;
+                    background-color: white;
+                    color: black;
+                }
+            }
+        }
+
+        .videoSection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .videoContainer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .photoSection {
+            hr {
+                width: 100%;
+                height: 1px;
+                background-color: #818181;
+                border: none;
+                margin: 0;
+            }
+
+            .photoHeading {
+                margin-left: 80px;
+            }
+
+            .photoContainer {
+                width: 1094px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        .subscribeSection {
+            background-color: rgb(255, 255, 191);
+
+            .subscribeContainer {
+                margin-block: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                flex-direction: column;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    input {
+                        width: 300px;
+                        padding: 10px;
+                        border-radius: 5px;
+                        border: 1px solid #ccc;
+                        font-size: 16px;
+                        text-align: center;
+
+                        &:focus {
+                            outline: none;
+                            border-color: black;
+                        }
+                    }
+
+                    button {
+                        background-color: rgb(255, 0, 0);
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        font-size: 20px;
+                        padding: 10px 20px;
+                        border: none;
+                        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color: white;
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .homeFooter {
+        border: 1px solid #ccc;
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
+}
