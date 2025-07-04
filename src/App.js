@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AuthContext';
 
+import React, { useEffect } from 'react';
+
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Videos from './pages/Videos';
@@ -12,6 +14,11 @@ import SingleVideo from './pages/SingleVideo';
 import './App.scss';
 
 function App() {
+
+  useEffect(() => {
+    document.title = "AYVID - Your Video Platform";
+  }, []);
+
   return (
     <AppProvider>
       <Router>

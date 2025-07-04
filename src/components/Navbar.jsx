@@ -10,7 +10,9 @@ const Navbar = () => {
     return (
         <nav>
             <ul>
-                <li>Logo</li>
+                <div className="logo">
+                    AYVID
+                </div>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/videos">Videos</Link></li>
                 <li><Link to={isAuthenticated ? '/dashboard' : '/login'}>Dashboard</Link></li>
