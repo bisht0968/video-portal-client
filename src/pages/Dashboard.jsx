@@ -4,10 +4,13 @@ import { AppContext } from '../context/AuthContext.jsx';
 import DashboardCard from '../components/DashboardCard.jsx';
 import VideoCard from '../components/VideoCard.jsx';
 import NoUserVideosComponent from '../components/NoUserVideosComponent.jsx';
+import Spinner from '../components/Spinner';
+
 import { useNavigate } from 'react-router-dom';
+import UploadVideos from '../components/UploadVideos.jsx';
 
 const Dashboard = () => {
-    const { user, isAuthenticated, token, userVideos, getUserVideos } = useContext(AppContext);
+    const { user, isAuthenticated, token, userVideos, getUserVideos, updateTotalViews } = useContext(AppContext);
 
     const [refreshTrigger, setRefreshTrigger] = useState(false);
     const [showUploadModal, setShowUploadModal] = useState(false);
@@ -16,6 +19,7 @@ const Dashboard = () => {
     const [thumbnail, setThumbnail] = useState(null);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -49,6 +53,8 @@ const Dashboard = () => {
             return;
         }
 
+        setLoading(true);
+
         const formData = new FormData();
         formData.append("video", selectedFile);
         formData.append("title", title);
@@ -76,11 +82,14 @@ const Dashboard = () => {
         } catch (err) {
             console.error("Upload error:", err);
             alert("Upload error");
+        } finally {
+            setLoading(false);
         }
     };
 
     useEffect(() => {
         getUserVideos();
+        updateTotalViews();
     }, [refreshTrigger]);
 
     return (
@@ -127,53 +136,13 @@ const Dashboard = () => {
 
             {/* Upload Modal */}
             {showUploadModal && (
-                <div className="uploadModalOverlay">
-                    <div className="uploadModal">
-                        <div className="uploadModalNavbar">
-                            <h2>Upload Video</h2>
-                            <button className="closeModalBtn" onClick={handleCloseModal}>X</button>
-                        </div>
-                        <div className="uploadOptions">
-                            <input
-                                type="text"
-                                placeholder="Enter video title"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            />
-                            <textarea
-                                placeholder="Enter description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                            <div
-                                className="dragDropArea"
-                                onDrop={handleDrop}
-                                onDragOver={handleDragOver}
-                            >
-                                <p>Drag and drop your video here</p>
-                                {selectedFile && <p>Selected: {selectedFile.name}</p>}
-                            </div>
-
-                            <div className="orText">OR</div>
-                            <input type="file" accept="video/*" onChange={handleFileChange} />
-
-                            <div className="thumbnailInput">
-                                <label>Select Thumbnail:</label>
-                                <input type="file" accept="image/*" onChange={handleThumbnailChange} />
-                                {thumbnail && <p>Selected Thumbnail: {thumbnail.name}</p>}
-                            </div>
-
-                            <div className="uploadInstructions">
-                                <p>Supported video formats: MP4, AVI, MOV</p>
-                                <p>Supported image formats: JPG, PNG, JPEG</p>
-                            </div>
-
-                            <button className="uploadButton" onClick={handleUpload}>
-                                Upload Video
-                            </button>
-                        </div>
+                loading ? (
+                    <div className="uploadModalOverlay">
+                        <Spinner text="Uploading Video" />
                     </div>
-                </div>
+                ) : (
+                    <UploadVideos handleCloseModal={handleCloseModal} title={title} setTitle={setTitle} description={description} setDescription={setDescription} handleDragOver={handleDragOver} handleDrop={handleDrop} handleFileChange={handleFileChange} handleThumbnailChange={handleThumbnailChange} handleUpload={handleUpload} selectedFile={selectedFile} thumbnail={thumbnail} />
+                )
             )}
 
             {showSuccessfullMessage && (

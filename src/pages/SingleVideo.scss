@@ -1,0 +1,95 @@
+.singleVideoPage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    .backButton {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 10;
+        transition: background 0.3s;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+    }
+
+    .videoWrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        video {
+            width: 100%;
+            height: 70vh;
+            object-fit: contain;
+            background-color: black;
+        }
+
+        .videoSpinnerOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70vh;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .videoDetails {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+
+            .videoDetailsContainer {
+                display: flex;
+                justify-content: space-between;
+
+
+                .videoTitle {
+                    font-size: 24px;
+                    margin-bottom: 8px;
+                    width: 50%;
+                }
+
+                .videoMeta {
+                    font-size: 14px;
+                    color: #ccc;
+                    display: flex;
+                    gap: 10px;
+                    margin-bottom: 10px;
+                    flex-wrap: wrap;
+                }
+            }
+
+            .videoDescription {
+                font-size: 16px;
+                line-height: 1.5;
+                color: #ddd;
+            }
+        }
+    }
+
+    .videoLoadingInfo {
+        color: white;
+        text-align: center;
+    }
+}

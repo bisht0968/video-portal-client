@@ -3,20 +3,24 @@ import React from 'react';
 import './VideoCard.scss';
 
 const VideoCard = ({ key, video, homePage, onClick }) => {
-    console.log(video);
+
+    const truncateChars = (text, limit) => {
+        return text.length > limit ? text.slice(0, limit) + '...' : text;
+    };
+
     return (
         <div className="videoCardContainer" onClick={onClick}>
             <div className="videoCardSection">
                 <div className="videoCardImage">
-                    <img src={`http://localhost:5000/${video.thumbnailUrl}`} alt="" />
+                    <img src={video.thumbnailUrl} alt="" />
                 </div>
                 {!homePage && (
                     <>
                         <div className="videoCardTitle">
-                            {video.title}
+                            {truncateChars(video.title, 40)}
                         </div>
                         <div className="videoCardDescription">
-                            {video.description}
+                            {truncateChars(video.description, 40)}
                         </div>
                     </>
                 )}

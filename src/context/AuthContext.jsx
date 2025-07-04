@@ -14,6 +14,7 @@ const AppProvider = ({ children }) => {
 
     const [singleVideo, setSingleVideo] = useState(null);
     const [allVideos, setAllVideos] = useState([]);
+    const [totalViews, setTotalViews] = useState(0);
 
     const loginUser = async (formData, navigate) => {
         try {
@@ -38,6 +39,7 @@ const AppProvider = ({ children }) => {
             localStorage.setItem("isAuthenticated", "true");
             setToken(res.data.token);
             setUser(res.data.user);
+
             setIsAuthenticated(true);
             navigate("/dashboard");
         } catch (err) {
@@ -68,7 +70,7 @@ const AppProvider = ({ children }) => {
         }
     };
 
-    const getSingleVideo = async (id) => {
+    const getSingleVideoUsingID = async (id) => {
         try {
             const res = await axios.get(`http://localhost:5000/api/videos/${id}`);
             setSingleVideo(res.data);
@@ -87,6 +89,10 @@ const AppProvider = ({ children }) => {
         }
     };
 
+    const updateTotalViews = () => {
+        setTotalViews(userVideos.reduce((acc, video) => acc + video.views, 0));
+    }
+
     return (
         <AppContext.Provider value={{
             user,
@@ -97,10 +103,12 @@ const AppProvider = ({ children }) => {
             isAuthenticated,
             userVideos,
             getUserVideos,
-            getSingleVideo,
+            getSingleVideoUsingID,
             singleVideo,
             getAllVideos,
-            allVideos
+            allVideos,
+            totalViews,
+            updateTotalViews
         }}>
             {children}
         </AppContext.Provider>

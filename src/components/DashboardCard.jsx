@@ -4,7 +4,13 @@ import './DashboardCard.scss';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { useContext } from 'react';
+import { AppContext } from '../context/AuthContext';
+
 const DashboardCard = () => {
+
+    const { totalViews } = useContext(AppContext);
+
     return (
         <div className='dashboardCardContainer'>
             <div className="dashboardCardSection">
@@ -12,7 +18,7 @@ const DashboardCard = () => {
                     <FontAwesomeIcon icon={faEye} />
                 </div>
                 <h4 className="dashboardCardViews">
-                    123M
+                    {totalViews}
                 </h4>
                 <div className="dashboardCardText">
                     Total Views
