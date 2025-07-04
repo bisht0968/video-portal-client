@@ -1,6 +1,8 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 
+import baseUrl from "../api";
+
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
@@ -18,7 +20,7 @@ const AppProvider = ({ children }) => {
 
     const loginUser = async (formData, navigate) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+            const res = await axios.post(`${baseUrl}/auth/login`, formData);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
             localStorage.setItem("isAuthenticated", "true");
@@ -33,7 +35,7 @@ const AppProvider = ({ children }) => {
 
     const registerUser = async (formData, navigate) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/register", formData);
+            const res = await axios.post(`${baseUrl}/auth/register`, formData);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
             localStorage.setItem("isAuthenticated", "true");
@@ -58,7 +60,7 @@ const AppProvider = ({ children }) => {
 
     const getUserVideos = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/videos/user/dashboard", {
+            const res = await axios.get(`${baseUrl}/videos/user/dashboard`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
@@ -72,7 +74,7 @@ const AppProvider = ({ children }) => {
 
     const getSingleVideoUsingID = async (id) => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/videos/${id}`);
+            const res = await axios.get(`${baseUrl}/videos/${id}`);
             setSingleVideo(res.data);
         } catch (err) {
             console.error("Error fetching video:", err);
@@ -81,7 +83,7 @@ const AppProvider = ({ children }) => {
 
     const getAllVideos = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/videos/getAllVideos");
+            const res = await axios.get(`${baseUrl}/videos/getAllVideos`);
             setAllVideos(res.data);
         } catch (err) {
             console.error("Error fetching all videos:", err);

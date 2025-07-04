@@ -9,6 +9,8 @@ import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import UploadVideos from '../components/UploadVideos.jsx';
 
+import baseUrl from '../api.js';
+
 const Dashboard = () => {
     const { user, isAuthenticated, token, userVideos, getUserVideos, updateTotalViews } = useContext(AppContext);
 
@@ -62,7 +64,7 @@ const Dashboard = () => {
         formData.append("thumbnail", thumbnail);
 
         try {
-            const res = await fetch("http://localhost:5000/api/videos/upload", {
+            const res = await fetch(`${baseUrl}/videos/upload`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
