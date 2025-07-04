@@ -8,7 +8,7 @@ const TrendingVideoCard = ({ video, onClick }) => {
         <div className='trendingVideoCardContainer' onClick={onClick}>
             <div className="trendingVideoCardSection">
                 <div className="trendingVideoCardImage">
-                    <img src={`http://localhost:5000/${video.thumbnailUrl}`} alt="" />
+                    <img src={video.thumbnailUrl} alt="" />
                 </div>
 
             </div>
