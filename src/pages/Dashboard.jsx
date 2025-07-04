@@ -9,7 +9,7 @@ import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import UploadVideos from '../components/UploadVideos.jsx';
 
-import baseUrl from '../api.js';
+import baseUrl from '../api.jsx';
 
 const Dashboard = () => {
     const { user, isAuthenticated, token, userVideos, getUserVideos, updateTotalViews } = useContext(AppContext);

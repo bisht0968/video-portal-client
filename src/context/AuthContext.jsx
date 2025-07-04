@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 
-import baseUrl from "../api";
+import baseUrl from "../api.jsx";
 
 const AppContext = createContext();
 
