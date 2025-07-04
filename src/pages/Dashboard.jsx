@@ -9,9 +9,10 @@ import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import UploadVideos from '../components/UploadVideos.jsx';
 
-import baseUrl from '../api.jsx';
-
 const Dashboard = () => {
+
+    const baseUrl = 'https://video-portal-server.onrender.com/api';
+
     const { user, isAuthenticated, token, userVideos, getUserVideos, updateTotalViews } = useContext(AppContext);
 
     const [refreshTrigger, setRefreshTrigger] = useState(false);

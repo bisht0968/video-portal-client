@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 
-import baseUrl from "../api.jsx";
-
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
+
+    const baseUrl = 'https://video-portal-server.onrender.com/api';
+
     const [token, setToken] = useState(localStorage.getItem("token") || null);
     const [user, setUser] = useState(() => {
         const storedUser = localStorage.getItem("user");
